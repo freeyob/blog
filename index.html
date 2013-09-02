@@ -3,9 +3,10 @@ layout: default
 title: 我的Blog
 ---
 <h2>{{ page.title }}</h2>
-<p>大个子  Cong看到的世界</p>
+<div class="test">Cong看到的世界</div>
 <ul>
 {% for post in site.posts %}
 <li>{{ post.date | date_to_string }} <a href="{{ post.url }}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
+<% include footer.html %>
