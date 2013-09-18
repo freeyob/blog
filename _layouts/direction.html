@@ -27,15 +27,16 @@
 		<div class="main">
 			<div class="left">
 				<div class="leftbox">
-					<h2><a href="{{post.url}}">{{ page.title }}</a></h2> 
-					{{content}}
+					<div class="forday">{% include dayplan.html %}</div>
+					<div class="formonth">{% include monthplan.html %}</div>
+				</div>
+				<div class="leftbox">
+					{% include yearplan.html %}
 				</div>
 			</div>
-			<div class="right"><ul>
-			   {% for post in site.posts %}
-			   <li>{{ post.date | date_to_string }} <a href="{{ post.url }}">{{ post.title }}</a></li>
-			  {% endfor %}
-			   </ul></div>
+			<div class="right">
+				{% include problems.html %}	
+			</div>
 			<div class="blank"></div>
 		</div>	
 			<div class="footer">{% include footer.html %}</div>
