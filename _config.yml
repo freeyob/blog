@@ -1,1 +1,7 @@
-baseurl:/
+markdown: rdiscount
+permalink: /:year/:month/:title/
+url: http://toyblocks.net
+author: cong
+pygments: true
+paginate: 24
+baseurl: /
