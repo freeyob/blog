@@ -1,43 +1,58 @@
-<!DOCTYPE html>
-　　<html>
-　　<head>
-　　　　<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-	  	<link rel="stylesheet" type="text/css" href="/css/main.css">
-	  
-　　　　<title>Hello World</title>
-　　</head>
-　　<body><div class="out">
-		<div class="page-header header">
-			<h1>Cong看到的地方</h1>
-		</div>
-		<div class="navbar navbar-default"r>
-			<div class="container">
-				<div class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li class=""><a href="http://toyblocks.net">HOME</a></li>
-						<li><a href="#">BLOG</a></li>
-						<li><a href="#">NOTE</a></li>
-						<li><a href="#">PIECE</a></li>
-						<li><a href="#">LIFE</a></li>
-						<li><a href="http://toyblocks.net/direction.html">DIRECTION</a></li>
-				</div>
-			</div>
-		</div>
-		<div class="main">
-			<div class="left">
-				<div class="leftbox">
-					<h2><a href="{{post.url}}">{{ page.title }}</a></h2> 
-					{{content}}
-				</div>
-			</div>
-			<div class="right"><ul>
-			   {% for post in site.posts %}
-			   <li>{{ post.date | date_to_string }} <a href="{{ post.url }}">{{ post.title }}</a></li>
-			  {% endfor %}
-			   </ul></div>
-			<div class="blank"></div>
-		</div>	
-			<div class="footer">{% include footer.html %}</div>
-	　　　</div>　</body>
-　　</html>
+---
+layout: default
+---
+
+<section class="post">
+{{ content }}
+</section>
+<section class="meta">
+<span class="author">
+  <a href="http://geeklu.com">{{ site.author }}</a>
+</span>
+<span class="time">
+  /
+  <time datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date:"%Y-%m-%d" }}</time>
+</span>
+<br />
+<span class="license">
+  Published under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">(CC) BY-NC-SA</a>
+</span>
+{% if page.categories %}
+<span class="categories">
+  in categories
+  {% for cat in page.categories %}
+  <a href="/categories/#{{ cat }}" title="{{ cat }}">{{ cat }}</a>&nbsp;
+  {% endfor %}
+</span>
+{% endif %}
+{% if page.tags %}
+<span class="tags">
+  tagged with 
+  {% for tag in page.tags %}
+  <a href="/tags/#{{ tag }}" title="{{ tag }}">{{ tag }}</a>&nbsp;
+  {% endfor %}
+</span>
+{% endif %}
+</section>
+{% include comments.md %}
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+            {% if page.previous %}
+        url = '{{ site.url }}{{ page.previous.url }}';
+        {% endif %}
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            {% if page.next %}
+        url = '{{ site.url }}{{ page.next.url }}';
+        {% endif %}
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
+
