@@ -1,7 +1,7 @@
 markdown: kramdown
 permalink: /:year/:month/:title/
-url: http://toyblocks.net
+url: http://congcong.work
 author: cong
-pygments: true
+highlighter: rouge
 paginate: 24
 baseurl: /
